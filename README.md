@@ -41,5 +41,5 @@ sudo apt install textlive-full -y
 
 2. Instalar un editor de textos para LaTeX:
 
-cosa
-ksksks
+cosa djdjjdjd xxxxxxxxxxxxxxxxxxxxx jjdjdjdjdj aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa qqqqq
+yyyyyyyyyyyyyyy
