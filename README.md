@@ -62,3 +62,17 @@ es posible compilar directamente desde la terminal:
 ```bash
 pdflatex file.txt
 ```
+
+## Crear un documento
+Una vez instalado LaTeX podemos crear un primer documento para aprender los comandos
+más importantes.
+
+En primer lugar es necesario indicar el tipo de documento que queremos crear. Esto se
+indica mediante la línea de código:
+```tex
+\documentclass{article}
+```
+
+En este caso hemos creado un documento corto con la clase "article". También existen
+otras opciones como, por ejemplo, `"report"` o `"book"`, que son adecuadas para
+documentos largos.
