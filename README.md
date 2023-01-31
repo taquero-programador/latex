@@ -165,7 +165,7 @@ el preámbulo escribiendo:
 \usepackege{amsmath}
 ```
 
-Icluyendo esta línea en el preámbulo, LaTeX tendrá acceso a más comandos y entornos que
+Incluyendo esta línea en el preámbulo, LaTeX tendrá acceso a más comandos y entornos que
 te permitirán escribir fácilmente ecuaciones de mayor complejidad.
 
 También en el preámbulo es recomendable indicar el idioma de escritura del documento
@@ -239,3 +239,155 @@ En caso de querer escribir comentarios de varias líneas podemos utilizar el ent
     \end{comment}
 \end{document}
 ```
+
+## Crear una portada
+Para crear una portada en un documento de LaTeX puede utilizar dos comandos distintos.
+
+La opción más simple consiste en utilizar el comando `\maketitle`. Solo hace falta
+escribir este comando justo después de empezar el entorno `document` para que LaTeX
+genere automáticamente un título para el documento. La opción más avanzada y que nos da
+más libertad para personalizar una portada en el entorno `titlepage`.
+
+#### Portada con el comando `maketitle`
+Hay dos aspectos importantes a tener en cuenta antes de utilizar este comando. En primer lugar, es necesario definir los parámetros necesarios para crear el título en
+el preámbulo del documento. Esto incluye definier el título, el autor y la fecha del
+documento.
+
+Utilizando este metódo podemos crear un documento con una portada mediante:
+```tex
+\documentclass{report}
+\title{La vuelta al mundo en 80 d\'ias}
+\date{2023-01-31}
+\author{Bender Doblador}
+\begin{document}
+    \maketitle
+    Contenido
+\end{document}
+```
+
+En caso de no querer mostrar la fecha es necesario escribir el comando `date` en blanco.
+
+En segundo lugar, es importante tener en cuenta que la clase de documento que
+seleccionamos define el formato de título. Utilizando la clase de documento `book` o
+`report`, se creará automáticamente una página para la portada al principio del
+documento. La clase `article`, en cambio, coloca el título, autores y fecha en el
+espacio superior de la primera página.
+
+También es posible forzar la creación de la portada en una página aparte indicándole
+en el comando que define la clase de documento. Esto es posible mediante el parámetro
+`titlepage`. Por ejemplo, en un documento de tipo `article`:
+```tex
+\documentclass[titlepage]{article}
+```
+
+#### Portada con el entorno `titlepage`
+Para crear una portada más personalizada es recomedable utilizar el entorno `titlepage`
+dentro del documento.
+
+Este entorno nos permite definir los elementos que queremos mostrar en la portada,
+incluyendo posición, formato, espaciado, etc.
+
+Un ejemplo de portada creada con este entorno es:
+```tex
+\documentclass{report}
+\begin{document}
+    \begin{titlepage}
+        \centering
+        {\bfseries\LARGE Universidad Superior T\'ecnica \par}
+        \vspace{1cm}
+        {\scshape\Large Facultad de Ingenier\'ia Industrial \par}
+        \vspace{3cm}
+        {\scshape\Huge T\'itulo del proyecto \par}
+        \vspace{3cm}
+        {\itshape\Large Proyecto Fin de Carrera \par}
+        \vfill
+        {\Large Autor: \par}
+        {\Large Nombre Apellidos \par}
+        \vfill
+        {\Large Junio 2020 \par}
+    \end{titlepage}
+\end{document}
+```
+
+En primer lugar, dentro del entorno `titlepage`, se incluye el comando `\centering`
+para indicar que el texto debe mostrarse centrado horizontalmente. Tmabién es posible
+alinear el texto a la izquiera con `\raggedright` o a la dereche `\raggedleft`.
+
+En segundo lugar, existen distintas líneas escritas entre llaves. Estas son las
+distintas unidades de texto que aparecen en la portada. Estos elementos se escriben
+entre llaves para indicar que deben mostrarse con el mismo estilo. En este caso el
+estilo incluye definir el tipo de letra y tamaño.
+
+Los tipos de letra utilizados en esta portada son mayúsculas pequeñas (small caps) con
+`\scshape`, negrita (boldface) con `\bfseries` y cursiva (italic) con `\itshape`.
+Aparte de estas tres posibilidades existen otros tipos de letras.
+
+El tamaño de letra se ha especificado con los comandos `\large`, `\Large` y `\Huge`.
+
+Cada línea de texto termina con el comando `\par`. Esto indica que debe crearse un
+nuevo párrafo. De lo contrario, LaTeX generaría todos los elementos de texto en una
+sola línea.
+
+Por último, exiten también una serie de comando para indicar el espacio vertical entre
+los distintos elementos. Uno de ellos es `\vspaces{longitud}` que crear un espacio
+vertical con la longitud especificada. También existen la opción de utilizar el
+comando `\vfill`. Este comado simplemente rellena el espacio para ocupar la página
+enter.
+
+#### Insertar una imagen o logo en la portada
+En trabajos universitarios es habitual el logo de la universidad en la portada. Esto
+puede hacerse exactamente con el mismo procedimiento seguido para añadir una imagen.
+
+En caso de añadir un logo en la parte superior de la portada el código necesario es:
+```tex
+\documentclass{report}
+\usepackage{graphicx}
+\begin{document}
+    \begin{titlepage}
+        \centering
+        {\includegraphics[width=0.2\textwidth]{logo}\par}
+        \vspace{1cm}
+        {\bfseries\LARGE Universidad Superior T\'ecnica \par}
+        \vspace{1cm}
+        {\scshape\Large Facultad de Ingenier\'ia Industrial \par}
+        \vspace{3cm}
+        {\scshape\Huge T\'itulo del proyecto \par}
+        \vspace{3cm}
+        {\itshape\Large Proyecto Fin de Carrera \par}
+        \vfill
+        {\Large Autor: \par}
+        {\Large Nombre Apellidos \par}
+        \vfill
+        {\Large Junio 2020 \par}
+    \end{titlepage}
+\end{document}
+```
+
+Este caso muestra dos cambios respecto al ejemplo anterior. En primer lugar se añadio
+el paquete `graphicx` en el preámbulo.
+```tex
+\usepackege{graphicx}
+```
+
+Este paquete es necesario para poder utilizar los comandos referentes a la inserción
+de imágenes.
+
+El comando concreto que inserta la imagen es:
+```tex
+\includegraphics[width=0.2\textwidth]{logo}
+```
+
+Este comando inserta la imagen con el nombre del logo. En este caso es necesario que la
+imagen esté guardada en la misma carpeta que el archivo LaTeX. Tamién es posible
+indicar la ruta hacia la carpeta donde hemos guardado la imagen. Por ejemplo, si está
+dentro de la carpeta imágenes podríamos escribir:
+```tex
+\includegraphics[width=0.2\textwidth]{Imagenes/logo}
+```
+
+Si no indicamos la extensión del archivo LaTeX escogerá automáticamente el archivo con
+el nombre indicado que sea compatible.
+
+El comando anterior también incluye un parámetro para indicar la anchura de la imagen.
+Existen distintas unidades para indicar la anchura de la imagen. En este caso indicamos
+que sea un 20% de la anchura total del texto con `0.2\textwidth`.
