@@ -64,6 +64,8 @@ pdflatex file.txt
 ```
 
 ## Crear un documento
+
+#### Declaración de la clase de documento
 Una vez instalado LaTeX podemos crear un primer documento para aprender los comandos
 más importantes.
 
@@ -73,6 +75,167 @@ indica mediante la línea de código:
 \documentclass{article}
 ```
 
-En este caso hemos creado un documento corto con la clase "article". También existen
+En este caso hemos creado un documento corto con la clase `"article"`. También existen
 otras opciones como, por ejemplo, `"report"` o `"book"`, que son adecuadas para
 documentos largos.
+
+Una vez declarado el tipo de documento, debemos indicar el comienzo del contenido
+mediante las etiquetas:
+```tex
+\begin{document}
+    Mi primer documento en LaTeX!
+\end{document}
+```
+
+Estas dos etiquetas delimitan el contenido de nuestro contenido. Es importante escribir
+siempre todo el contenido entre estas dos etiquetas. De lo contrario, será imposible
+compilar el documento.
+
+Una opción es escribir las ecuaciones junto con el texto, sin cambiar necesariamente
+de línea. Esto se consigue escribiendo las ecuaciones entre los símbolos de `$`.
+Por ejemplo:
+```tex
+La expresi\'on m\'as importante de la teor\'ia de la relatividad es $E=mc^2$.
+```
+
+Si en cambio queremos escribir la ecuación centrada en una línea aparte, debemos
+escribir la ecuación entre `$$`. Por ejemplo:
+```tex
+La expresi\'on m\'as importante de la teor\'ia de la relatividad es $$E=mc^2$$.
+```
+
+#### Declaración de entornos
+Dentro de un documento es habitual definir distintos entornos para crear bloques de
+contenido que LaTeX debe interpretear de forma distinta. Los entornos se definen
+siempre mediante las etiquetas:
+```tex
+\begin{document}
+\end{document}
+```
+
+Como hemos visto, el entorno principal de un documento se conoce como `document`.
+Dentro del entorno `document`, es posible definir subentornos según las funciones
+deseadas. Por ejemplo, dentro del entorno `document`, podemos abrir otro entorno para
+centrar un texto:
+```tex
+\begin{document}
+    \begin{center}
+        Este texto aparece centrado
+    \end{center}
+\end{document}
+```
+
+Otro ejemplo consiste en definir un entorno `itemize` para crear una lista:
+```tex
+\begin{document}
+    Aqu\'i empieza una lista:
+    \begin{itemize}
+        \item Primer elemento de la lista
+        \item Segundo elemento de la lista
+    \end{itemize}
+\end{document}
+```
+
+#### Preámbulo de un documento
+La sección entre la declaración de un documento y el comienzo del contenido se conoce
+como preámbulo.
+
+En esta sección puede incluirse instrucciones adicionales para trabajar con el
+documento. En particular, es recomendable añadir en esta sección información sobre el
+documento. Por ejemplo, el título, el autor y la fecha.
+```tex
+\title{Mi primer documento}
+\date{2018-03-01}
+\author{Bender Doblador}
+```
+
+Esta información no aparecerá en el documento al ser compilada, pero queda guardada y
+puede ser utilizada, por ejemplo, para crear una portada.
+
+El preámbulo también es utilizado para cargar paquetes adicionales que añaden
+funcionalidades a nuestro documento. Existe un gran número de paquetes que pueden ser
+cargados a LaTeX: para crear tablas de contenido, encabezados, símbolos matemáticos,
+tablas, etc. La primera vez que utilices un paquete nuevo, el propio programa de LaTeX
+que utlices se encargara de instalarlo en tu ordenador para que esté disponible.
+
+Por ejemplo, un paquete de uso habitual en un documento de contenido matemático es
+el `amsmath` de la American Mathematical Society. Este paquete puede ser cargado desde
+el preámbulo escribiendo:
+```tex
+\usepackege{amsmath}
+```
+
+Icluyendo esta línea en el preámbulo, LaTeX tendrá acceso a más comandos y entornos que
+te permitirán escribir fácilmente ecuaciones de mayor complejidad.
+
+También en el preámbulo es recomendable indicar el idioma de escritura del documento
+mediante el paquete babel. En caso de escribir el documento en español esto se puede
+hacer con el comando:
+```text
+\usepackege[spanish]{babel}
+```
+
+Esta indicación permite a LaTeX tener en cuenta ciertas particularidades del idioma
+español. Por ejemplo, es útil para dividir correctamente la palabra a final de la línea
+y para tener acceso a alguna expresiones matemáticas es español (e.g. seno -> sen).
+
+También es importante tener en cuenta que, por defecto, LaTeX no acepta algunos
+caracteres específicos del español como son, por ejemplo, la ñ o las voales con tilde.
+Esto se debe al origen aglosajón de LaTeX.
+
+Para escribir estos caracteres particulares del español hay dos opciones. La primera
+consiste en escapara los caracteres con una barra inversa. Así, las letras con tilde
+pueden escribirse mediante:
+Carácter | Resultado
+-- | --
+\'a | á
+\'e | é
+\'i | í
+\'o | ó
+\'u | ú
+\'A | Á
+\'E | É
+\'I | Í
+\'O | Ó
+\'U | Ú
+\'n | ñ
+\'N | Ñ
+\"u | ü
+\"U | Ü
+
+Esta primera opción es la más recomendable cuando un grupo de personas deben trabajar
+con el mismo documento ya que evita inconsistencias entre distintos sistemas.
+
+La seguna opción consiste en cargar un paquete de caracteres que permitan escribir
+directamente los caracteres especiales en LaTeX. Una de las opciones más extendidas
+es la codificación `utf8`. Esta puede cargarse en un documento mediante:
+```tex
+\usepackege[utf8]{inputec}
+```
+
+Alternativamente, también es posible utilizar la codificación:
+```tex
+\usepackege[utf8]{inputec}
+```
+
+#### Comentarios
+Una de las posibilidades que ofrece LaTeX es la de añadir comentarios en medio del
+documento. Estos comentarios pueden servir para clarificar el uso de algunos comandos
+y no aparecen en el documento compilado.
+
+La forma más rápida de añadir un comentario es escribir el símbolo `%` seguida del
+comentario. Por ejemplo, la siguiente línea:
+```tex
+Esta es una l\'inea de texto % Esto es un comentario
+```
+
+En caso de querer escribir comentarios de varias líneas podemos utilizar el entorno
+`comment`, que está disponible mediante el comando `comment`:
+```tex
+\usepackege{comment}
+\begin{document}
+    \begin{comment}
+        Esto es un comentario de distintas líneas. En este caso, todo el texto contenido entre las etiquetas del entorno comment no aparecerán en el documento compilado.
+    \end{comment}
+\end{document}
+```
