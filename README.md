@@ -1,4 +1,4 @@
-# latex
+# LaTeX
 
 ## ¿Qué es LaTeX?
 LaTeX es un sistema de preparación de documentos que facilita la escritura de
@@ -31,3 +31,15 @@ interpretan únicamente cuando compilamos el documento. Además, LaTeX gestiona
 automáticamente ciertos aspectos importantes de un documento como pueden ser los
 índices de contenido, las listas de bibliografía o las referencias cruzadas a imágenes,
 ecuaciones, etc.
+
+## Instalación (Linux)
+1. La distribución TeXLive es la distribución TeX por defecto en la mayoría de sistemas
+Linux. Para evitar problemas , lo mejor es hacer una instalación completa:
+```bash
+sudo apt install textlive-full -y
+```
+
+2. Instalar un editor de textos para LaTeX:
+
+cosa
+ksksks
