@@ -34,12 +34,31 @@ ecuaciones, etc.
 
 ## Instalación (Linux)
 1. La distribución TeXLive es la distribución TeX por defecto en la mayoría de sistemas
-Linux. Para evitar problemas , lo mejor es hacer una instalación completa:
+Linux. Para evitar problemas, lo mejor es hacer una instalación completa:
 ```bash
 sudo apt install textlive-full -y
 ```
 
 2. Instalar un editor de textos para LaTeX:
+```bash
+sudo apt install texmaker -y
+```
 
-cosa djdjjdjd xxxxxxxxxxxxxxxxxxxxx jjdjdjdjdj aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa qqqqq
-yyyyyyyyyyyyyyy
+Para VIM:
+```conf
+Plug 'lervag/vimtex'
+
+# config
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_compiler_method = 'latexrun'
+let maplocalleader = ","
+```
+
+3. Si instalar un editor específico para LaTeX normalmente tendrás la opción de
+compilar tus archivos a `.pdf` directamente desde la GUI. En caso contrario también
+es posible compilar directamente desde la terminal:
+```bash
+pdflatex file.txt
+```
